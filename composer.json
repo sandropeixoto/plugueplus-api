@@ -1,0 +1,24 @@
+{
+  "name": "plugueplus/api",
+  "description": "PluguePlus REST API using Slim 4, PDO, and MySQL.",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "slim/slim": "^4.13",
+    "slim/psr7": "^1.5",
+    "vlucas/phpdotenv": "^5.6",
+    "firebase/php-jwt": "^6.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "start": "php -S localhost:8080 -t public"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}
