@@ -1,9 +1,12 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /plugueplus-api
 
-    # Send everything to index.php if the requested resource does not exist
+    # Não reescrever o próprio index.php
+    RewriteRule ^index\.php$ - [L]
+
+    # Redirecionar para index.php apenas se não existir arquivo/pasta
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [QSA,L]
-
 </IfModule>
