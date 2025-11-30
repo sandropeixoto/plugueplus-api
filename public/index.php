@@ -44,9 +44,13 @@ $dotenv->safeLoad();
 
 $app = AppFactory::create();
 $basePath = $_ENV['APP_BASE_PATH'] ?? '';
-if (!empty($basePath)) {
-    $app->setBasePath($basePath);
+if ($basePath === '') {
+    // Auto-detect base path from script name (e.g., /plugueplus-api/public/index.php).
+    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+    $directory = rtrim(str_replace('/index.php', '', $scriptName), '/');
+    $basePath = $directory !== '' ? $directory : '';
 }
+$app->setBasePath($basePath);
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(
