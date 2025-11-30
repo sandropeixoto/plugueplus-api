@@ -43,6 +43,10 @@ $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->safeLoad();
 
 $app = AppFactory::create();
+$basePath = $_ENV['APP_BASE_PATH'] ?? '';
+if (!empty($basePath)) {
+    $app->setBasePath($basePath);
+}
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(
