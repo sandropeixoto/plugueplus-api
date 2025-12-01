@@ -127,6 +127,17 @@ class PostController
         return ResponseHelper::json($response, true, $comment, 'Comentário criado.', [], [], 201);
     }
 
+    public function destroy(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $id = (int) ($args['id'] ?? 0);
+        if (!$this->posts->findById($id)) {
+            return ResponseHelper::error($response, 'Post não encontrado.', [], 404);
+        }
+
+        $this->posts->delete($id);
+        return ResponseHelper::success($response, null, 'Post removido.');
+    }
+
     public function comments(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $postId = (int) ($args['id'] ?? 0);

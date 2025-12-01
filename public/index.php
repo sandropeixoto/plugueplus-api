@@ -109,6 +109,7 @@ $app->group('/api/v1', function (RouteCollectorProxy $group): void {
     $group->get('/posts', 'App\\Controllers\\PostController:index');
     $group->get('/posts/{id}', 'App\\Controllers\\PostController:show');
     $group->post('/posts', 'App\\Controllers\\PostController:store');
+    $group->delete('/posts/{id}', 'App\\Controllers\\PostController:destroy');
     $group->post('/posts/{id}/like', 'App\\Controllers\\PostController:like');
     $group->delete('/posts/{id}/like', 'App\\Controllers\\PostController:unlike');
     $group->post('/posts/{id}/comment', 'App\\Controllers\\PostController:comment');
